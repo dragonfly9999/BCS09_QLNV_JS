@@ -95,7 +95,7 @@ function checkPasswordValue(value, idSpan) {
     }else{
       document.getElementById(idSpan).style.display = "block";
       document.getElementById(idSpan).innerHTML =
-        "Lương không hợp lệ hoặc không được thêm dấu phẩy hoặc chấm vào các con số";
+        "Số lương chỉ trong khoảng 1,000,000 đến 20,000,000";
       return false;
     };
   };

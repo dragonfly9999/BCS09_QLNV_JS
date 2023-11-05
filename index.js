@@ -91,12 +91,17 @@ function getValueStaff() {
 }
 
 function addInfoStaff() {
+  event.preventDefault();
   var nhanVien = getValueStaff();
   if (nhanVien) {
     arrNhanVien.push(nhanVien);
     saveLocalStore("arrNhanVien", arrNhanVien);
     renderDisplay();
-    document.getElementById("formQLVN").reset();
+    // openToasts();
+    document.getElementById("allForm").reset();
+   
+    
+
   }
 }
 
@@ -112,7 +117,7 @@ function renderDisplay(arr) {
   for (var z = 0; z < arr.length; z++) {
     // muốn các đối tượng được lấy từ localStorage sẽ có phương thức cần phải khởi tạo một đối tượng
     var nhanVien = new NhanVien();
-    var staffInfo = arrNhanVien[z];
+    var staffInfo = arr[z];
     // sử dụng Object.assign để copy dữ liệu
     Object.assign(nhanVien, staffInfo);
     // console.log(nhanVien);
@@ -192,7 +197,7 @@ function editInfoStaff() {
   arrNhanVien[editLocation] = nhanVien;
   saveLocalStore("arrNhanVien", arrNhanVien);
   renderDisplay();
-  document.getElementById("formQLVN").reset();
+  document.getElementById("allForm").reset();
 }
 // ---- xây dựng chức năng tìm kiếm nhân viên theo loại Nhân Viên-----
 function searchStaff(event) {
@@ -243,10 +248,20 @@ function getLocalStore(key) {
   }
 }
 
+
 getLocalStore("arrNhanVien");
 
+
+// function openToasts(){
+//   // gọi tới layout Toast 
+//   const toastLiveExample = document.getElementById('liveToast');
+//   // thêm Toast bootstrap để có thể sử dụng phương thức show giúp mở Toast lên 
+//   const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample);
+//   toastBootstrap.show();
+// }
+
 // click để thêm Nhân Viên
-document.getElementById("btnThemNV").onclick = addInfoStaff;
+// document.getElementById("btnThemNV").onclick = addInfoStaff;
 
 // click để edit Nhân Viên
 document.getElementById("btnCapNhat").onclick = editInfoStaff;
